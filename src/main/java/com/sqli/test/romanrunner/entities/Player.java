@@ -40,6 +40,18 @@ public abstract class Player extends Slot
 		return Character.toUpperCase(name.charAt(0));
 	}
 	
+	public void left () throws ObstacleHitedException
+	{
+		left = true;
+		forward();
+	}
+	
+	public void right () throws ObstacleHitedException
+	{
+		left = false;
+		forward();
+	}
+	
 	abstract void whenArrived ();
 	abstract void whenEarnedCoin ();
 	

@@ -163,4 +163,32 @@ public class RomanRunnerTest
                 .toString();
         assertEquals(expectedDisplay, circenses.draw());
     }
+	
+	@Test
+    public void aPlayerCanMoveRight() throws ObstacleHitedException {
+        Circenses circenses = new CircensesBuilder()
+                .addEmptySlot()
+                .build();
+
+        Player player = new Charioteer("tiberius");
+        player.startGame(circenses);
+
+        player.right();
+
+        String expectedDisplay = new StringBuilder()
+                .append("|##|\n")
+                .append("|  |\n")
+                .append("|@T|")
+                .toString();
+        assertEquals(expectedDisplay, circenses.draw());
+
+        player.forward();
+
+        expectedDisplay = new StringBuilder()
+                .append("|##|\n")
+                .append("| T|\n")
+                .append("|@ |")
+                .toString();
+        assertEquals(expectedDisplay, circenses.draw());
+    }
 }
