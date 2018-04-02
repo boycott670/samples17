@@ -211,4 +211,53 @@ public class RomanRunnerTest
         assertEquals(expectedDisplay, circenses.draw());
 
     }
+	
+	@Test
+    public void playerHitObstacle() throws ObstacleHitedException {
+        Circenses circenses = new CircensesBuilder()
+                .addCoin().addEmptySlot()
+                .right().addCoin().addEmptySlot()
+                .left().addCoin().addObstacle()
+                .build(); 
+        Player player = new Charioteer("augustus");
+        player.startGame(circenses);
+
+        String expectedDisplay = new StringBuilder()
+                .append("|##|\n")
+                .append("|_ |\n")
+                .append("|o |\n")
+                .append("| o|\n")
+                .append("|o |\n")
+                .append("|A |")
+                .toString();
+        assertEquals(expectedDisplay, circenses.draw());
+
+        player.forward().right().forward().left().forward();
+
+        expectedDisplay = new StringBuilder()
+                .append("|##|\n")
+                .append("|_ |\n")
+                .append("|A |\n")
+                .append("| x|\n")
+                .append("|x |\n")
+                .append("|@ |")
+                .toString();
+
+        assertEquals(expectedDisplay, circenses.draw());
+        assertEquals(30, player.score());
+
+        player.forward();
+
+        expectedDisplay = new StringBuilder()
+                .append("|##|\n")
+                .append("|D |\n")
+                .append("|x |\n")
+                .append("| x|\n")
+                .append("|x |\n")
+                .append("|@ |")
+                .toString();
+
+        assertEquals(expectedDisplay, circenses.draw());
+        assertEquals(25, player.score());
+    }
 }

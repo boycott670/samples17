@@ -25,4 +25,17 @@ public final class Charioteer extends Player
 	{
 		score += 10;
 	}
+
+	@Override
+	void whenHitObstacle()
+	{
+		isDead = true;
+		score -= 5;
+	}
+
+	@Override
+	public char draw()
+	{
+		return !isDead ? super.draw() : 'D';
+	}
 }

@@ -11,6 +11,7 @@ public abstract class Player extends Slot
 	private Circenses circenses;
 	int score = 0;
 	private boolean earnedCoin = false;
+	boolean isDead = false;
 	
 	Player (ComparableIntPair position, String name, int score)
 	{
@@ -54,6 +55,7 @@ public abstract class Player extends Slot
 	
 	abstract void whenArrived ();
 	abstract void whenEarnedCoin ();
+	abstract void whenHitObstacle ();
 	
 	public void startGame (final Circenses circenses)
 	{
@@ -81,7 +83,15 @@ public abstract class Player extends Slot
 		}
 		else
 		{
-			circenses.setSlot(getPosition(), earnedCoin ? new EarnedCoin(getPosition()) : new EmptySlot(getPosition()));
+			if (earnedCoin)
+			{
+				earnedCoin = false;
+				circenses.setSlot(getPosition(), new EarnedCoin(getPosition()));
+			}
+			else
+			{
+				circenses.setSlot(getPosition(), new EmptySlot(getPosition()));
+			}
 		}
 		
 		final ComparableIntPair playerNextPosition = getNextPosition();
@@ -96,6 +106,10 @@ public abstract class Player extends Slot
 		{
 			earnedCoin = true;
 			whenEarnedCoin();
+		}
+		else if (circenses.isObstacle(getPosition()))
+		{
+			whenHitObstacle();
 		}
 		
 		circenses.setSlot(getPosition(), this);

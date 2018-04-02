@@ -49,4 +49,9 @@ public final class Circenses
 	{
 		return slots.get(position) instanceof Coin;
 	}
+	
+	public boolean isObstacle (ComparableIntPair position)
+	{
+		return slots.get(position) instanceof Obstacle;
+	}
 }
