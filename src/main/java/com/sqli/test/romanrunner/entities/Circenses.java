@@ -44,4 +44,9 @@ public final class Circenses
 	{
 		return slots.get(position) instanceof FinishLine;
 	}
+	
+	public boolean isCoin (ComparableIntPair position)
+	{
+		return slots.get(position) instanceof Coin;
+	}
 }

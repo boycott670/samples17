@@ -19,4 +19,10 @@ public final class Charioteer extends Player
 	{
 		score += 100;
 	}
+
+	@Override
+	void whenEarnedCoin()
+	{
+		score += 10;
+	}
 }

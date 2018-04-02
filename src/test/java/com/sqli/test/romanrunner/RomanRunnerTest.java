@@ -96,4 +96,43 @@ public class RomanRunnerTest
         assertEquals(expectedDisplay, circenses.draw());
         assertEquals(100, player.score());
     }
+	
+	@Test
+    public void aPlayerEarns10PerCoin() throws ObstacleHitedException {
+        Circenses circenses = new CircensesBuilder()
+                .addCoin()
+                .build();
+
+        Player player = new Charioteer("tiberius");
+        player.startGame(circenses);
+
+        String expectedDisplay = new StringBuilder()
+                .append("|##|\n")
+                .append("|o |\n")
+                .append("|T |")
+                .toString();
+        assertEquals(expectedDisplay, circenses.draw());
+        assertEquals(0, player.score());
+
+        player.forward();
+
+        expectedDisplay = new StringBuilder()
+                .append("|##|\n")
+                .append("|T |\n")
+                .append("|@ |")
+                .toString();
+        assertEquals(expectedDisplay, circenses.draw());
+        assertEquals(10, player.score());
+
+        player.forward();
+
+        expectedDisplay = new StringBuilder()
+                .append("|T#|\n")
+                .append("|x |\n")
+                .append("|@ |")
+                .toString();
+        assertEquals(expectedDisplay, circenses.draw());
+        assertEquals(110, player.score());
+
+    }
 }
