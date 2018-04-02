@@ -56,6 +56,7 @@ public abstract class Player extends Slot
 	abstract void whenArrived ();
 	abstract void whenEarnedCoin ();
 	abstract void whenHitObstacle ();
+	abstract boolean isGameEnded ();
 	
 	public void startGame (final Circenses circenses)
 	{
@@ -77,6 +78,11 @@ public abstract class Player extends Slot
 	
 	public Player forward () throws ObstacleHitedException
 	{
+		if (isGameEnded())
+		{
+			throw new ObstacleHitedException();
+		}
+		
 		if (ComparableIntPair.of(0, 0).equals(getPosition()))
 		{
 			circenses.setSlot(ComparableIntPair.of(0, 0), new PreviousPlayerStartPosition());

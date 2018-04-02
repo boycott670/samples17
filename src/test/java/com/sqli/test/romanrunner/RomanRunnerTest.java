@@ -260,4 +260,24 @@ public class RomanRunnerTest
         assertEquals(expectedDisplay, circenses.draw());
         assertEquals(25, player.score());
     }
+	
+	@Test(expected = ObstacleHitedException.class)
+    public void playerCantMoveAfterHitingObstacle() throws ObstacleHitedException {
+        Circenses circenses = new CircensesBuilder()
+                .addCoin().addObstacle()
+                .build();
+        Player player = new Charioteer("augustus");
+        player.startGame(circenses);
+        player.forward().forward();
+
+        String expectedDisplay = new StringBuilder()
+                .append("|##|\n")
+                .append("|D |\n")
+                .append("|x |\n")
+                .append("|@ |")
+                .toString();
+        assertEquals(expectedDisplay, circenses.draw());
+
+        player.forward();
+    }
 }

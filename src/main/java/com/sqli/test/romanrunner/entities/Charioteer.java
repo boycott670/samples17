@@ -38,4 +38,10 @@ public final class Charioteer extends Player
 	{
 		return !isDead ? super.draw() : 'D';
 	}
+
+	@Override
+	boolean isGameEnded()
+	{
+		return isDead;
+	}
 }
