@@ -39,8 +39,7 @@ public abstract class Player extends Slot
 		return Character.toUpperCase(name.charAt(0));
 	}
 	
-	abstract Player clone (ComparableIntPair nextPosition);
-	abstract Player whenArrived ();
+	abstract void whenArrived ();
 	
 	public void startGame (final Circenses circenses)
 	{
@@ -66,17 +65,21 @@ public abstract class Player extends Slot
 		{
 			circenses.setSlot(ComparableIntPair.of(0, 0), new PreviousPlayerStartPosition());
 		}
-		
-		final ComparableIntPair playerNextPosition = getNextPosition();
-
-		if (circenses.isFinalSlot(playerNextPosition))
-		{
-			circenses.setSlot(playerNextPosition, whenArrived());
-		}
 		else
 		{
-			circenses.setSlot(playerNextPosition, clone(playerNextPosition));
+			circenses.setSlot(getPosition(), new EmptySlot(getPosition()));
 		}
+		
+		final ComparableIntPair playerNextPosition = getNextPosition();
+		
+		setPosition(playerNextPosition);
+
+		if (circenses.isFinalSlot(getPosition()))
+		{
+			whenArrived();
+		}
+		
+		circenses.setSlot(getPosition(), this);
 	}
 	
 	public int score ()

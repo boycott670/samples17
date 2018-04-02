@@ -9,25 +9,14 @@ public final class Charioteer extends Player
 		super(position, name, score);
 	}
 	
-	private Charioteer (ComparableIntPair position, String name)
-	{
-		super(position, name);
-	}
-	
 	public Charioteer(String name)
 	{
 		super(name);
 	}
 
 	@Override
-	Player clone(ComparableIntPair nextPosition)
+	void whenArrived()
 	{
-		return new Charioteer(nextPosition, getName());
-	}
-
-	@Override
-	Player whenArrived()
-	{
-		return new Charioteer(getPosition(), getName(), score + 100);
+		score += 100;
 	}
 }

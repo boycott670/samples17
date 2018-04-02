@@ -6,7 +6,7 @@ import com.sqli.test.romanrunner.entities.utils.ComparableIntPair;
 
 public abstract class Slot implements Comparable<Slot>
 {
-	private final ComparableIntPair position;
+	private ComparableIntPair position;
 	
 	public Slot(ComparableIntPair position)
 	{
@@ -16,6 +16,11 @@ public abstract class Slot implements Comparable<Slot>
 	public ComparableIntPair getPosition()
 	{
 		return position;
+	}
+
+	public void setPosition(ComparableIntPair position)
+	{
+		this.position = position;
 	}
 
 	public abstract char draw ();
