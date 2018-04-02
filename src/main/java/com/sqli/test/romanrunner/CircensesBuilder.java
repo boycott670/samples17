@@ -22,6 +22,18 @@ public final class CircensesBuilder
 	
 	private final Map<ComparableIntPair, Slot> slots = new HashMap<>();
 	
+	public CircensesBuilder left ()
+	{
+		left = true;
+		return this;
+	}
+	
+	public CircensesBuilder right ()
+	{
+		left = false;
+		return this;
+	}
+	
 	private ComparableIntPair getNextPosition ()
 	{
 		if (left)

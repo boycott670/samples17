@@ -135,4 +135,32 @@ public class RomanRunnerTest
         assertEquals(110, player.score());
 
     }
+	
+	@Test
+    public void complexCircensesBuilderTest() {
+        Circenses circenses = new CircensesBuilder()
+                .addCoin().addCoin().addEmptySlot().addCoin().addObstacle()
+                .right().addCoin().addEmptySlot().addCoin().addObstacle()
+                .left().addCoin().addCoin()
+                .right().addEmptySlot().addCoin().addCoin()
+                .build();
+
+
+        String expectedDisplay = new StringBuilder()
+                .append("|##|\n")
+                .append("| o|\n")
+                .append("| o|\n")
+                .append("|o |\n")
+                .append("|o_|\n")
+                .append("| o|\n")
+                .append("|  |\n")
+                .append("|_o|\n")
+                .append("|o |\n")
+                .append("|  |\n")
+                .append("|o |\n")
+                .append("|o |\n")
+                .append("|  |")
+                .toString();
+        assertEquals(expectedDisplay, circenses.draw());
+    }
 }
