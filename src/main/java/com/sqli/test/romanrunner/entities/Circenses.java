@@ -34,4 +34,14 @@ public final class Circenses
 		
 		slots.put(this.player.getPosition(), this.player);
 	}
+	
+	public void setSlot (ComparableIntPair position, Slot slot)
+	{
+		slots.put(position, slot);
+	}
+	
+	public boolean isFinalSlot (ComparableIntPair position)
+	{
+		return slots.get(position) instanceof FinishLine;
+	}
 }
