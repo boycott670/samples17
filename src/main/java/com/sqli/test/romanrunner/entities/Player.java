@@ -40,16 +40,16 @@ public abstract class Player extends Slot
 		return Character.toUpperCase(name.charAt(0));
 	}
 	
-	public void left () throws ObstacleHitedException
+	public Player left () throws ObstacleHitedException
 	{
 		left = true;
-		forward();
+		return forward();
 	}
 	
-	public void right () throws ObstacleHitedException
+	public Player right () throws ObstacleHitedException
 	{
 		left = false;
-		forward();
+		return forward();
 	}
 	
 	abstract void whenArrived ();
@@ -73,7 +73,7 @@ public abstract class Player extends Slot
 		}
 	}
 	
-	public void forward () throws ObstacleHitedException
+	public Player forward () throws ObstacleHitedException
 	{
 		if (ComparableIntPair.of(0, 0).equals(getPosition()))
 		{
@@ -99,6 +99,8 @@ public abstract class Player extends Slot
 		}
 		
 		circenses.setSlot(getPosition(), this);
+		
+		return this;
 	}
 	
 	public int score ()
