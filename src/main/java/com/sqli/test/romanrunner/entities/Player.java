@@ -12,6 +12,7 @@ public abstract class Player extends Slot
 	int score = 0;
 	private boolean earnedCoin = false;
 	boolean isDead = false;
+	boolean byPassedObstacle = false;
 	
 	Player (ComparableIntPair position, String name, int score)
 	{
@@ -93,6 +94,11 @@ public abstract class Player extends Slot
 			{
 				earnedCoin = false;
 				circenses.setSlot(getPosition(), new EarnedCoin(getPosition()));
+			}
+			else if (byPassedObstacle)
+			{
+				byPassedObstacle = false;
+				circenses.setSlot(getPosition(), new Obstacle(getPosition()));
 			}
 			else
 			{

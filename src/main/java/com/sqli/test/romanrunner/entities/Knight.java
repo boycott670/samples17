@@ -1,8 +1,8 @@
 package com.sqli.test.romanrunner.entities;
 
-public final class Charioteer extends Player
+public final class Knight extends Player
 {
-	public Charioteer(String name)
+	public Knight(String name)
 	{
 		super(name);
 	}
@@ -16,25 +16,20 @@ public final class Charioteer extends Player
 	@Override
 	void whenEarnedCoin()
 	{
-		score += 10;
+		score += 20;
 	}
 
 	@Override
 	void whenHitObstacle()
 	{
-		isDead = true;
-		score -= 5;
-	}
-
-	@Override
-	public char draw()
-	{
-		return !isDead ? super.draw() : 'D';
+		score -= 10;
+		byPassedObstacle = true;
 	}
 
 	@Override
 	boolean isGameEnded()
 	{
-		return isDead;
+		return false;
 	}
+
 }
